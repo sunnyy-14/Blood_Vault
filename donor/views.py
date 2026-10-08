@@ -32,17 +32,19 @@ def donor_signup_view(request):
     return render(request,'donor/donorsignup.html',context=mydict)
 
 
+@login_required(login_url='donorlogin')
 def donor_dashboard_view(request):
     donor= models.Donor.objects.get(user_id=request.user.id)
     dict={
-        'requestpending': bmodels.BloodRequest.objects.all().filter(request_by_donor=donor).filter(status='Pending').count(),
-        'requestapproved': bmodels.BloodRequest.objects.all().filter(request_by_donor=donor).filter(status='Approved').count(),
-        'requestmade': bmodels.BloodRequest.objects.all().filter(request_by_donor=donor).count(),
-        'requestrejected': bmodels.BloodRequest.objects.all().filter(request_by_donor=donor).filter(status='Rejected').count(),
+        'requestpending': bmodels.BloodRequest.objects.filter(request_by_donor=donor, status='Pending').count(),
+        'requestapproved': bmodels.BloodRequest.objects.filter(request_by_donor=donor, status='Approved').count(),
+        'requestmade': bmodels.BloodRequest.objects.filter(request_by_donor=donor).count(),
+        'requestrejected': bmodels.BloodRequest.objects.filter(request_by_donor=donor, status='Rejected').count(),
     }
     return render(request,'donor/donor_dashboard.html',context=dict)
 
 
+@login_required(login_url='donorlogin')
 def donate_blood_view(request):
     donation_form=forms.DonationForm()
     if request.method=='POST':
@@ -56,11 +58,13 @@ def donate_blood_view(request):
             return HttpResponseRedirect('donation-history')  
     return render(request,'donor/donate_blood.html',{'donation_form':donation_form})
 
+@login_required(login_url='donorlogin')
 def donation_history_view(request):
     donor= models.Donor.objects.get(user_id=request.user.id)
     donations=models.BloodDonate.objects.all().filter(donor=donor)
     return render(request,'donor/donation_history.html',{'donations':donations})
 
+@login_required(login_url='donorlogin')
 def make_request_view(request):
     request_form=bforms.RequestForm()
     if request.method=='POST':
@@ -74,6 +78,7 @@ def make_request_view(request):
             return HttpResponseRedirect('request-history')  
     return render(request,'donor/makerequest.html',{'request_form':request_form})
 
+@login_required(login_url='donorlogin')
 def request_history_view(request):
     donor= models.Donor.objects.get(user_id=request.user.id)
     blood_request=bmodels.BloodRequest.objects.all().filter(request_by_donor=donor)

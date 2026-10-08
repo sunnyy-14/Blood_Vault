@@ -32,18 +32,20 @@ def patient_signup_view(request):
         return HttpResponseRedirect('patientlogin')
     return render(request,'patient/patientsignup.html',context=mydict)
 
+@login_required(login_url='patientlogin')
 def patient_dashboard_view(request):
     patient= models.Patient.objects.get(user_id=request.user.id)
     dict={
-        'requestpending': bmodels.BloodRequest.objects.all().filter(request_by_patient=patient).filter(status='Pending').count(),
-        'requestapproved': bmodels.BloodRequest.objects.all().filter(request_by_patient=patient).filter(status='Approved').count(),
-        'requestmade': bmodels.BloodRequest.objects.all().filter(request_by_patient=patient).count(),
-        'requestrejected': bmodels.BloodRequest.objects.all().filter(request_by_patient=patient).filter(status='Rejected').count(),
+        'requestpending': bmodels.BloodRequest.objects.filter(request_by_patient=patient, status='Pending').count(),
+        'requestapproved': bmodels.BloodRequest.objects.filter(request_by_patient=patient, status='Approved').count(),
+        'requestmade': bmodels.BloodRequest.objects.filter(request_by_patient=patient).count(),
+        'requestrejected': bmodels.BloodRequest.objects.filter(request_by_patient=patient, status='Rejected').count(),
 
     }
-   
+
     return render(request,'patient/patient_dashboard.html',context=dict)
 
+@login_required(login_url='patientlogin')
 def make_request_view(request):
     request_form=bforms.RequestForm()
     if request.method=='POST':
@@ -57,6 +59,7 @@ def make_request_view(request):
             return HttpResponseRedirect('my-request')  
     return render(request,'patient/makerequest.html',{'request_form':request_form})
 
+@login_required(login_url='patientlogin')
 def my_request_view(request):
     patient= models.Patient.objects.get(user_id=request.user.id)
     blood_request=bmodels.BloodRequest.objects.all().filter(request_by_patient=patient)

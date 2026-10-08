@@ -1,9 +1,9 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang=”en”>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset=”UTF-8”>
+    <meta name=”viewport” content=”width=device-width, initial-scale=1.0”>
     <title>Blood Vault - Save Lives, Donate Blood</title>
     <style>
         * {
@@ -13,14 +13,14 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: ‘Segoe UI’, Tahoma, Geneva, Verdana, sans-serif;
             overflow-x: hidden;
             background-color: #f5f5f5;
         }
 
         .hero-section {
             min-height: 90vh;
-            background-color: #f7f2f1;
+            background: linear-gradient(to bottom, #fef5f5 0%, #fff 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -102,16 +102,15 @@
             align-items: center;
         }
 
-        .hero-image img {
+        .hero-image svg {
             width: 100%;
-            max-width: 550px;
+            max-width: 450px;
             height: auto;
-            border-radius: 20px;
         }
 
         .features-section {
             padding: 80px 20px;
-            background-color: #f7f2f1;
+            background-color: white;
         }
 
         .features-container {
@@ -151,7 +150,7 @@
         }
 
         .footer-section {
-            background-color: #f7f2f1;
+            background-color: #f5f5f5;
             padding: 30px 20px;
             text-align: center;
             color: #636e72;
@@ -182,41 +181,67 @@
 </head>
 
 <body>
-    {% include "blood/navbar.html" %}
+    {% include “blood/navbar.html” %}
 
     <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-content">
-            <div class="hero-text">
+    <section class=”hero-section”>
+        <div class=”hero-content”>
+            <div class=”hero-text”>
                 <h1>Give Blood, Save Lives</h1>
                 <p>Your donation can bring hope and save a life. Find a donor or request blood easily.</p>
-                <div class="cta-buttons">
-                    <a href="/donor/donorsignup" class="btn-donate">Donate Now</a>
-                    <a href="/patient/patientsignup" class="btn-need">Need Blood</a>
+                <div class=”cta-buttons”>
+                    <a href=”/donor/donorsignup” class=”btn-donate”>Donate Now</a>
+                    <a href=”/patient/patientsignup” class=”btn-need”>Need Blood</a>
                 </div>
             </div>
-            <div class="hero-image">
-                <img src="{% static 'image/hero-image.png' %}" alt="Blood Donation Illustration">
+            <div class=”hero-image”>
+                <svg xmlns=”http://www.w3.org/2000/svg” viewBox=”0 0 400 400” width=”400” height=”400”>
+                    <!-- Background Circle -->
+                    <circle cx=”200” cy=”200” r=”180” fill=”#ffd7d7” opacity=”0.5”/>
+
+                    <!-- Blood Drop -->
+                    <defs>
+                        <linearGradient id=”bloodGrad” x1=”0%” y1=”0%” x2=”0%” y2=”100%”>
+                            <stop offset=”0%” style=”stop-color:#e74c3c;stop-opacity:1” />
+                            <stop offset=”100%” style=”stop-color:#c0392b;stop-opacity:1” />
+                        </linearGradient>
+                    </defs>
+
+                    <path d=”M200 80 C200 80, 160 120, 160 170 C160 210, 180 240, 200 240 C220 240, 240 210, 240 170 C240 120, 200 80, 200 80 Z”
+                          fill=”url(#bloodGrad)”/>
+
+                    <!-- Heartbeat Line -->
+                    <polyline points=”150,200 165,200 175,180 185,220 195,200 210,200”
+                              fill=”none” stroke=”white” stroke-width=”3” opacity=”0.9”/>
+
+                    <!-- Left Hand -->
+                    <ellipse cx=”120” cy=”280” rx=”45” ry=”50” fill=”#ffb380” transform=”rotate(-15 120 280)”/>
+                    <rect x=”100” y=”300” width=”40” height=”60” rx=”20” fill=”#ffb380” transform=”rotate(-10 120 330)”/>
+
+                    <!-- Right Hand -->
+                    <ellipse cx=”280” cy=”280” rx=”45” ry=”50” fill=”#ffb380” transform=”rotate(15 280 280)”/>
+                    <rect x=”260” y=”300” width=”40” height=”60” rx=”20” fill=”#ffb380” transform=”rotate(10 280 330)”/>
+                </svg>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features-section">
-        <div class="features-container">
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🔍</div>
+    <section class=”features-section”>
+        <div class=”features-container”>
+            <div class=”features-grid”>
+                <div class=”feature-card”>
+                    <div class=”feature-icon”>🔍</div>
                     <h3>Find Donors</h3>
                     <p>Locate blood donors near you instantly.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">❤️</div>
+                <div class=”feature-card”>
+                    <div class=”feature-icon”>❤️</div>
                     <h3>Register as Donor</h3>
                     <p>Become a hero and help save lives.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🩸</div>
+                <div class=”feature-card”>
+                    <div class=”feature-icon”>🩸</div>
                     <h3>Blood Inventory</h3>
                     <p>Check real-time stock availability.</p>
                 </div>
@@ -225,8 +250,12 @@
     </section>
 
     <!-- Footer -->
-    <div class="footer-section">
+    <div class=”footer-section”>
         <p>© 2026 Blood Vault. All rights reserved.</p>
     </div>
 </body>
 </html>
+<!--
+Customized for Blood Vault
+Original developed by: Sumit Kumar
+-->
