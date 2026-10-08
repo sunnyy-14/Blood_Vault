@@ -199,7 +199,7 @@ Before you begin, ensure you have the following installed:
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/Blood_Vault.git
+   git clone https://github.com/sunnyy-14/Blood_Vault.git
    cd Blood_Vault
    ```
 
