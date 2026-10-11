@@ -190,11 +190,6 @@ Before you begin, ensure you have the following installed:
   pip --version
   ```
 
-- **Git** (for cloning the repository)
-  ```bash
-  git --version
-  ```
-
 ### Installation
 
 1. **Clone the Repository**
