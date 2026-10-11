@@ -1,0 +1,232 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Vault - Save Lives, Donate Blood</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            background-color: #f5f5f5;
+        }
+
+        .hero-section {
+            min-height: 90vh;
+            background-color: #f7f2f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px 60px;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-text {
+            color: #2d3436;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            line-height: 1.2;
+            color: #2d3436;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 35px;
+            color: #636e72;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-donate, .btn-need {
+            padding: 15px 40px;
+            font-size: 1rem;
+            border: 2px solid #dc3545;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-donate {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-donate:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+        }
+
+        .btn-need {
+            background-color: white;
+            color: #dc3545;
+        }
+
+        .btn-need:hover {
+            background-color: #dc3545;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.2);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 550px;
+            height: auto;
+            border-radius: 20px;
+        }
+
+        .features-section {
+            padding: 80px 20px;
+            background-color: #f7f2f1;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #636e72;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            color: #2d3436;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: #636e72;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .footer-section {
+            background-color: #f7f2f1;
+            padding: 30px 20px;
+            text-align: center;
+            color: #636e72;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 50px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    {% include "blood/navbar.html" %}
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Give Blood, Save Lives</h1>
+                <p>Your donation can bring hope and save a life. Find a donor or request blood easily.</p>
+                <div class="cta-buttons">
+                    <a href="/donor/donorsignup" class="btn-donate">Donate Now</a>
+                    <a href="/patient/patientsignup" class="btn-need">Need Blood</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="{% static 'image/hero-image.png' %}" alt="Blood Donation Illustration">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="features-container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Find Donors</h3>
+                    <p>Locate blood donors near you instantly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">❤️</div>
+                    <h3>Register as Donor</h3>
+                    <p>Become a hero and help save lives.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🩸</div>
+                    <h3>Blood Inventory</h3>
+                    <p>Check real-time stock availability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="footer-section">
+        <p>© 2026 Blood Vault. All rights reserved.</p>
+    </div>
+</body>
+</html>
